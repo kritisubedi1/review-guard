@@ -69,14 +69,16 @@ fake-review-detection/
 
 ```bash
 # Clone repository
-git clone <your-repo-link>
-cd fake-review-detection
+git clone https://github.com/kritisubedi1/review-guard.git
+cd review-guard
+
+cd backend
 
 # Install dependencies
 pip install -r requirements.txt
 
 # Run application
-python main.py
+python run.py
 ```
 
 Open: `http://localhost:5000`
