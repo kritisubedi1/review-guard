@@ -94,94 +94,34 @@ Review-guard/
 
 ## 🚀 Installation & Run
 
-### 1️⃣ Clone Repository
+# Clone repository
+git clone https://github.com/kritisubedi1/review-guard.git
+cd review-guard
 
-```bash
-git clone <your-repo-link>
-cd fake-review-detection/backend
-```
+cd backend
 
-### 2️⃣ Create Virtual Environment
-
-```bash
-python3.12 -m venv .venv
-source .venv/bin/activate      # macOS/Linux
-# .venv\Scripts\activate     # Windows
-```
-
-### 3️⃣ Install Dependencies
-
-```bash
-pip install --upgrade pip setuptools wheel
+# Install dependencies
 pip install -r requirements.txt
-```
 
-### 4️⃣ Run Application
-
-```bash
+# Run application
 python run.py
-```
 
-Open in browser:
-
-```
-http://127.0.0.1:5000
-```
-
----
-
-## 🧪 Running Tests
-
-```bash
-pytest
-```
-
----
+Open: http://localhost:5000
 
 ## 📊 Model Evaluation
+Accuracy (>80% target)
+Precision, Recall, F1-Score
 
-The model is evaluated using:
+## 📊 Project Management (Jira)
 
-* Accuracy (Target: >80%)
-* Precision
-* Recall
-* F1-Score
-* Confusion Matrix
+The project was managed using Jira with sprint planning and task tracking.
 
-Evaluation is performed during training inside the `ml/` module before deployment.
+### 🗂️ Jira Board Overview
 
----
+![Jira Board](images/jira.png)
 
-## 📡 API Endpoints
-
-### Health Check
-
-```
-GET /health
-```
-
-### Single Review Prediction
-
-```
-POST /api/predict
-Body (JSON):
-{
-  "text": "This product is amazing!"
-}
-```
-
-### Batch Prediction
-
-```
-POST /api/predict-batch
-Form-data:
-file → CSV containing column: review_text
-```
-
----
 
 ## 📅 Agile Milestones
-
 1. Planning & Dataset Preparation
 2. Model Development & Evaluation
 3. Web Application Integration
