@@ -118,7 +118,7 @@ The project was managed using Jira with sprint planning and task tracking.
 
 ### 🗂️ Jira Board Overview
 
-![Jira Board](images/jira.png)
+![Jira Board](images/jira-board.png)
 
 
 ## 📅 Agile Milestones
