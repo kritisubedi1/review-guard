@@ -1,8 +1,8 @@
-# 🕵️ Review Guard: Fake Review Detection System
+# 🕵️Review Guard
 
 ## 📌 Project Overview
 
-The **Fake Review Detection System** is a locally runnable web application that uses Natural Language Processing (NLP) to classify online reviews as **genuine** or **fake**.
+The **Review Guard System** is a locally runnable web application that uses Natural Language Processing (NLP) and Machine Learning to classify online reviews as **genuine** or **fake**.
 
 Users can:
 
@@ -17,8 +17,8 @@ This project was developed by a three-person academic team over 10 weeks (part-t
 
 ## 🎯 Project Goals
 
-* **Technical Goal:** Achieve >80% classification accuracy on a held-out test set.
-* **Process Goal:** Deliver a functioning local web application using Agile methodology with four milestones.
+* **Technical Goal:** Achieve >80% classification accuracy on a held-out test dataset.
+* **Process Goal:** Deliver a fully functioning local web application using Agile methodology with four milestones.
 
 ---
 
@@ -28,38 +28,65 @@ This project was developed by a three-person academic team over 10 weeks (part-t
 * Batch CSV review processing
 * Confidence score output
 * Offline execution
-* Simple web interface
+* Simple web interface (Bootstrap-based UI)
 
 ---
 
 ## 🧠 Technology Stack
 
-* **Backend:** Python (Flask)
-* **Frontend:** HTML, CSS, JavaScript
-* **ML/NLP:** Scikit-learn, NLTK
+* **Backend:** Python (Flask 2.x)
+* **Frontend:** HTML, CSS, JavaScript (Bootstrap 5 optional)
+* **ML/NLP:** Scikit-learn, NLTK / SpaCy
 * **Data Processing:** Pandas
+* **Model Serialization:** Joblib
+* **Testing:** Pytest
 
 ---
 
 ## 📂 Project Structure
 
 ```
-fake-review-detection/
+Review-guard/
 │
-├── app/
-│   ├── templates/
-│   ├── static/
-│   └── main.py
+├── backend/
+│   ├── app/
+│   │   ├── factory.py
+│   │   ├── routes.py
+│   │   ├── services/
+│   │   │   └── inference.py
+│   │   ├── templates/
+│   │   │   ├── index.html
+│   │   │   └── batch.html
+│   │   └── static/
+│   │       ├── css/
+│   │       └── js/
+│   │
+│   ├── artifacts/
+│   │   ├── model.joblib
+│   │   ├── vectorizer.joblib
+│   │   └── label_map.json
+│   │
+│   ├── tests/
+│   │   └── test_health.py
+│   │
+│   ├── requirements.txt
+│   └── run.py
 │
-├── model/
-│   ├── model.pkl
-│   └── vectorizer.pkl
+├── ml/
+│   ├── src/
+│   │   ├── train.py
+│   │   ├── preprocess.py
+│   │   └── evaluate.py
+│   │
+│   └── artifacts/
 │
 ├── data/
-│   ├── train.csv
-│   └── test.csv
+│   ├── raw/
+│   │   └── reviews.csv
+│   └── processed/
 │
-├── requirements.txt
+├── scripts/
+│
 └── README.md
 ```
 
@@ -67,35 +94,96 @@ fake-review-detection/
 
 ## 🚀 Installation & Run
 
+### 1️⃣ Clone Repository
+
 ```bash
-# Clone repository
-git clone https://github.com/kritisubedi1/review-guard.git
-cd review-guard
+git clone <your-repo-link>
+cd fake-review-detection/backend
+```
 
-cd backend
+### 2️⃣ Create Virtual Environment
 
-# Install dependencies
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate      # macOS/Linux
+# .venv\Scripts\activate     # Windows
+```
+
+### 3️⃣ Install Dependencies
+
+```bash
+pip install --upgrade pip setuptools wheel
 pip install -r requirements.txt
+```
 
-# Run application
+### 4️⃣ Run Application
+
+```bash
 python run.py
 ```
 
-Open: `http://localhost:5000`
+Open in browser:
+
+```
+http://127.0.0.1:5000
+```
+
+---
+
+## 🧪 Running Tests
+
+```bash
+pytest
+```
 
 ---
 
 ## 📊 Model Evaluation
 
-* Accuracy (>80% target)
-* Precision, Recall, F1-Score
+The model is evaluated using:
+
+* Accuracy (Target: >80%)
+* Precision
+* Recall
+* F1-Score
+* Confusion Matrix
+
+Evaluation is performed during training inside the `ml/` module before deployment.
+
+---
+
+## 📡 API Endpoints
+
+### Health Check
+
+```
+GET /health
+```
+
+### Single Review Prediction
+
+```
+POST /api/predict
+Body (JSON):
+{
+  "text": "This product is amazing!"
+}
+```
+
+### Batch Prediction
+
+```
+POST /api/predict-batch
+Form-data:
+file → CSV containing column: review_text
+```
 
 ---
 
 ## 📅 Agile Milestones
 
 1. Planning & Dataset Preparation
-2. Model Development
+2. Model Development & Evaluation
 3. Web Application Integration
 4. Testing & Final Delivery
 
@@ -103,4 +191,4 @@ Open: `http://localhost:5000`
 
 ## 📜 License
 
-Developed for academic purposes.
+Developed for academic purposes only.
